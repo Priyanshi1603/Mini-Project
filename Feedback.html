@@ -1,0 +1,502 @@
+<!--Feedback Form-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Online Student Feedback Form</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      padding: 40px 50px;
+      max-width: 850px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h2 {
+      color: #2575fc;
+      margin-bottom: 5px;
+    }
+
+    p.subtitle {
+      color: #666;
+      margin-bottom: 25px;
+      font-size: 15px;
+    }
+
+    label {
+      font-weight: 500;
+      display: block;
+      text-align: left;
+      margin-top: 10px;
+      color: #333;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      margin-top: 5px;
+      transition: 0.3s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #2575fc;
+    }
+
+    textarea {
+      resize: none;
+      height: 100px;
+    }
+
+    .question {
+      display: grid;
+      grid-template-columns: 1fr auto auto auto auto auto;
+      align-items: center;
+      background: #f9f9f9;
+      border-radius: 10px;
+      padding: 10px 15px;
+      margin-top: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .question label:first-child {
+      grid-column: 1;
+      text-align: left;
+      font-weight: 500;
+      color: #333;
+    }
+
+    .rating-group {
+      grid-column: 2 / span 5;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .rating-group label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 50px;
+      color: #333;
+    }
+
+    .rating-group input[type="radio"] {
+      margin-bottom: 4px;
+      transform: scale(1.2);
+    }
+
+    .star-rating {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .star {
+      font-size: 40px;
+      color: #ccc;
+      cursor: pointer;
+      transition: color 0.3s, transform 0.2s;
+    }
+
+    .star:hover, .star.selected {
+      color: #f1c40f;
+      transform: scale(1.2);
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    button, a.btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 10px;
+      border: none;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover, a.btn:hover {
+      background: linear-gradient(135deg, #2575fc, #6a11cb);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 25px;
+      }
+
+      .rating-group {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Online Student Feedback Form</h2>
+    <p class="subtitle">Your valuable input drives our continuous improvement 🌱</p>
+
+    <form id="feedbackForm" onsubmit="return validateForm(event)">
+      <label>Full Name:</label>
+      <input type="text" id="name" placeholder="Enter your full name" required>
+
+      <label>Enrollment Number:</label>
+      <input type="text" id="enroll" placeholder="Enter your enrollment number" required>
+
+      <label>Course:</label>
+      <select id="course" required>
+        <option value="">-- Select Course --</option>
+        <option>M.Tech</option>
+        <option>MCA</option>
+        <option>MBA</option>
+      </select>
+
+      <label>Semester:</label>
+      <select id="semester" required>
+        <option value="">-- Select Semester --</option>
+        <option>Semester I</option>
+        <option>Semester II</option>
+        <option>Semester III</option>
+        <option>Semester IV</option>
+        <option>Semester V</option>
+        <option>Semester VI</option>
+        <option>Semester VII</option>
+        <option>Semester VIII</option>
+        <option>Semester IX</option>
+        <option>Semester X</option>
+      </select>
+
+      <p style="text-align:left;color:#555;"><b>Please rate the following (1=Poor, 5=Excellent):</b></p>
+
+      <div class="question" style="font-weight:bold; background:#eaf1ff;">
+        <label>Question</label>
+        <div class="rating-group">
+          <label>1</label>
+          <label>2</label>
+          <label>3</label>
+          <label>4</label>
+          <label>5</label>
+        </div>
+      </div>
+
+      <!-- Feedback Questions -->
+      <div class="question">
+        <label>1. Guidance/Counselling in academic and non-academic matters</label>
+        <div class="rating-group">
+          <label><input type="radio" name="q1"> </label>
+          <label><input type="radio" name="q1"> </label>
+          <label><input type="radio" name="q1"> </label>
+          <label><input type="radio" name="q1"> </label>
+          <label><input type="radio" name="q1"> </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <label>2. Use of modern teaching aids/gadgets</label>
+        <div class="rating-group">
+          <label><input type="radio" name="q2"> </label>
+          <label><input type="radio" name="q2"> </label>
+          <label><input type="radio" name="q2"> </label>
+          <label><input type="radio" name="q2"> </label>
+          <label><input type="radio" name="q2"> </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <label>3. Distribution of handouts and study materials</label>
+        <div class="rating-group">
+          <label><input type="radio" name="q3"> </label>
+          <label><input type="radio" name="q3"> </label>
+          <label><input type="radio" name="q3"> </label>
+          <label><input type="radio" name="q3"> </label>
+          <label><input type="radio" name="q3"> </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <label>4. Suggestions of references and web resources</label>
+        <div class="rating-group">
+          <label><input type="radio" name="q4"> </label>
+          <label><input type="radio" name="q4"> </label>
+          <label><input type="radio" name="q4"> </label>
+          <label><input type="radio" name="q4"> </label>
+          <label><input type="radio" name="q4"> </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <label>5. Use of PPTs and online learning tools</label>
+        <div class="rating-group">
+          <label><input type="radio" name="q5"> </label>
+          <label><input type="radio" name="q5"> </label>
+          <label><input type="radio" name="q5"> </label>
+          <label><input type="radio" name="q5"> </label>
+          <label><input type="radio" name="q5"> </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <label>6. Teacher is regular and punctual in class</label>
+        <div class="rating-group">
+          <label><input type="radio" name="q6"> </label>
+          <label><input type="radio" name="q6"> </label>
+          <label><input type="radio" name="q6"> </label>
+          <label><input type="radio" name="q6"> </label>
+          <label><input type="radio" name="q6"> </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <label>7. Content of syllabi of the course</label>
+        <div class="rating-group">
+          <label><input type="radio" name="q7"> </label>
+          <label><input type="radio" name="q7"> </label>
+          <label><input type="radio" name="q7"> </label>
+          <label><input type="radio" name="q7"> </label>
+          <label><input type="radio" name="q7"> </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <label>8. Availability of resources (online/offline)</label>
+        <div class="rating-group">
+          <label><input type="radio" name="q8"> </label>
+          <label><input type="radio" name="q8"> </label>
+          <label><input type="radio" name="q8"> </label>
+          <label><input type="radio" name="q8"> </label>
+          <label><input type="radio" name="q8"> </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <label>9. The course materials were helpful and relevant to the subject</label>
+        <div class="rating-group">
+          <label><input type="radio" name="q9" value="1"> </label>
+          <label><input type="radio" name="q9" value="2"> </label>
+          <label><input type="radio" name="q9" value="3"> </label>
+          <label><input type="radio" name="q9" value="4"> </label>
+          <label><input type="radio" name="q9" value="5"> </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <label>10. Cleanliness and availability of washrooms</label>
+        <div class="rating-group">
+          <label><input type="radio" name="q10" value="1"> </label>
+          <label><input type="radio" name="q10" value="2"> </label>
+          <label><input type="radio" name="q10" value="3"> </label>
+          <label><input type="radio" name="q10" value="4"> </label>
+          <label><input type="radio" name="q10" value="5"> </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <label>11. Availability and maintenance of water coolers</label>
+        <div class="rating-group">
+          <label><input type="radio" name="q11" value="1"> </label>
+          <label><input type="radio" name="q11" value="2"> </label>
+          <label><input type="radio" name="q11" value="3"> </label>
+          <label><input type="radio" name="q11" value="4"> </label>
+          <label><input type="radio" name="q11" value="5"> </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <label>12. Availability of library resources</label>
+        <div class="rating-group">
+          <label><input type="radio" name="q12" value="1"> </label>
+          <label><input type="radio" name="q12" value="2"> </label>
+          <label><input type="radio" name="q12" value="3"> </label>
+          <label><input type="radio" name="q12" value="4"> </label>
+          <label><input type="radio" name="q12" value="5"> </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <label>13. Support and cooperation from non-teaching staff</label>
+        <div class="rating-group">
+          <label><input type="radio" name="q13" value="1"> </label>
+          <label><input type="radio" name="q13" value="2"> </label>
+          <label><input type="radio" name="q13" value="3"> </label>
+          <label><input type="radio" name="q13" value="4"> </label>
+          <label><input type="radio" name="q13" value="5"> </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <label>14. Practical sessions and laboratory facilities</label>
+        <div class="rating-group">
+          <label><input type="radio" name="q14" value="1"> </label>
+          <label><input type="radio" name="q14" value="2"> </label>
+          <label><input type="radio" name="q14" value="3"> </label>
+          <label><input type="radio" name="q14" value="4"> </label>
+          <label><input type="radio" name="q14" value="5"> </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <label>15. Overall communication and interaction with teacher</label>
+        <div class="rating-group">
+          <label><input type="radio" name="q15" value="1"> </label>
+          <label><input type="radio" name="q15" value="2"> </label>
+          <label><input type="radio" name="q15" value="3"> </label>
+          <label><input type="radio" name="q15" value="4"> </label>
+          <label><input type="radio" name="q15" value="5"> </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <label>16. Classroom environment and comfort</label>
+        <div class="rating-group">
+          <label><input type="radio" name="q16" value="1"> </label>
+          <label><input type="radio" name="q16" value="2"> </label>
+          <label><input type="radio" name="q16" value="3"> </label>
+          <label><input type="radio" name="q16" value="4"> </label>
+          <label><input type="radio" name="q16" value="5"> </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <label>17. Timely evaluation and feedback by teachers</label>
+        <div class="rating-group">
+          <label><input type="radio" name="q17" value="1"> </label>
+          <label><input type="radio" name="q17" value="2"> </label>
+          <label><input type="radio" name="q17" value="3"> </label>
+          <label><input type="radio" name="q17" value="4"> </label>
+          <label><input type="radio" name="q17" value="5"> </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <label>18. Encouragement to participate in extracurricular activities</label>
+        <div class="rating-group">
+          <label><input type="radio" name="q18" value="1"> </label>
+          <label><input type="radio" name="q18" value="2"> </label>
+          <label><input type="radio" name="q18" value="3"> </label>
+          <label><input type="radio" name="q18" value="4"> </label>
+          <label><input type="radio" name="q18" value="5"> </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <label>19. Campus cleanliness and overall facilities</label>
+        <div class="rating-group">
+          <label><input type="radio" name="q19" value="1"> </label>
+          <label><input type="radio" name="q19" value="2"> </label>
+          <label><input type="radio" name="q19" value="3"> </label>
+          <label><input type="radio" name="q19" value="4"> </label>
+          <label><input type="radio" name="q19" value="5"> </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <label>20. Opportunities for student development and growth</label>
+        <div class="rating-group">
+          <label><input type="radio" name="q20" value="1"> </label>
+          <label><input type="radio" name="q20" value="2"> </label>
+          <label><input type="radio" name="q20" value="3"> </label>
+          <label><input type="radio" name="q20" value="4"> </label>
+          <label><input type="radio" name="q20" value="5"> </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <label>What is your overall satisfaction with the course/program?</label>
+        <div class="star-rating">
+          <span class="star" onclick="rateStar(this)">★</span>
+          <span class="star" onclick="rateStar(this)">★</span>
+          <span class="star" onclick="rateStar(this)">★</span>
+          <span class="star" onclick="rateStar(this)">★</span>
+          <span class="star" onclick="rateStar(this)">★</span>
+        </div>
+        <input type="hidden" id="starValue" name="starValue" required>
+      </div>
+
+      <label>Additional Comments:</label>
+      <textarea id="comments" placeholder="Write your feedback here..."></textarea>
+
+      <div class="button-group">
+        <button type="submit">Submit Feedback</button>
+        <button type="reset">Reset Form</button>
+        <a href="index.html" class="btn">Back to Home</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function rateStar(star) {
+      const stars = document.querySelectorAll(".star");
+      const index = Array.from(stars).indexOf(star);
+      stars.forEach((s, i) => {
+        s.classList.toggle("selected", i <= index);
+      });
+      // store selected value in hidden input
+      document.getElementById("starValue").value = index + 1;
+    }
+
+    function validateForm(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const enroll = document.getElementById("enroll").value.trim();
+      const course = document.getElementById("course").value;
+      const semester = document.getElementById("semester").value;
+      const starValue = document.getElementById("starValue").value;
+
+      if (!name || !enroll || !course || !semester) {
+        alert("⚠️ Please fill out all required fields!");
+        return false;
+      }
+
+      if (!starValue) {
+        alert("⭐ Please rate your overall satisfaction before submitting!");
+        return false;
+      }
+
+      for (let i = 1; i <= 20; i++) {
+        const answered = document.querySelector(`input[name="q${i}"]:checked`);
+        if (!answered) {
+          alert(`⚠️ Please answer Question ${i}.`);
+          return false;
+        }
+      }
+      window.location.href = "thankyou.html";
+    }
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!--Home Page-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome | Online Student Feedback System</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 60px 40px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      max-width: 700px;
+      width: 90%;
+      animation: fadeIn 1.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+
+    h1 span {
+      color: #ffe600;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 30px;
+      line-height: 1.6;
+      color: #e0e0e0;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background: white;
+      color: #2575fc;
+      padding: 12px 25px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: #ffe600;
+      color: #111;
+      transform: scale(1.1);
+      box-shadow: 0 4px 15px rgba(255, 230, 0, 0.5);
+    }
+
+    .illustration {
+      margin-top: 40px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 13px;
+      color: #ddd;
+    }
+
+    footer a {
+      color: #ffe600;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to the <span>Online Student Feedback System</span></h1>
+    <p>
+      Your voice matters! Help us improve the learning experience by sharing your valuable feedback 
+      about courses, teachers, and facilities. Together, we make our institution better. 🌱
+    </p>
+
+    <div class="buttons">
+      <a href="Feedback.html" class="btn">Start Feedback</a>
+      <a href="Guidelines.html" class="btn">View Guidelines</a>
+    </div>
+
+    <div class="illustration">
+      <img src="https://cdn-icons-png.flaticon.com/512/584/584796.png" alt="Feedback" width="120">
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Online Feedback System | Designed with ❤️ by Students
+  </footer>
+</body>
+</html>
